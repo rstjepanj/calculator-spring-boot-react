@@ -50,13 +50,41 @@ class Calculator extends React.Component {
             if (this.state.operator === '' || isNaN(this.state.operand1) || isNaN(this.state.operand2)) // nisu uneseni brojevi i operator
                 return;
             if (this.state.operator === '+')
-                this.setState({ text: addition(Number(this.state.operand1), Number(this.state.operand2)), operator: '', operand1: '', operand2: '' });
+                fetch(process.env.REACT_APP_BACKEND_URL + 'addition?operand1=' + Number(this.state.operand1) + '&operand2=' + Number(this.state.operand2))
+                    .then(resp => resp.json())
+                    .then(result => {
+                        if (isNaN(result))
+                            this.setState(this.setState({ text: 'Error', operator: '', operand1: '', operand2: '' }));
+                        else
+                            this.setState(this.setState({ text: result, operator: '', operand1: '', operand2: '' }));
+                    });
             else if (this.state.operator === '-')
-                this.setState({ text: subtraction(Number(this.state.operand1), Number(this.state.operand2)), operator: '', operand1: '', operand2: '' });
+                fetch(process.env.REACT_APP_BACKEND_URL + 'subtraction?operand1=' + Number(this.state.operand1) + '&operand2=' + Number(this.state.operand2))
+                    .then(resp => resp.json())
+                    .then(result => {
+                        if (isNaN(result))
+                            this.setState(this.setState({ text: 'Error', operator: '', operand1: '', operand2: '' }));
+                        else
+                            this.setState(this.setState({ text: result, operator: '', operand1: '', operand2: '' }));
+                    });
             else if (this.state.operator === '×')
-                this.setState({ text: multiplication(Number(this.state.operand1), Number(this.state.operand2)), operator: '', operand1: '', operand2: '' });
+                fetch(process.env.REACT_APP_BACKEND_URL + 'multiplication?operand1=' + Number(this.state.operand1) + '&operand2=' + Number(this.state.operand2))
+                    .then(resp => resp.json())
+                    .then(result => {
+                        if (isNaN(result))
+                            this.setState(this.setState({ text: 'Error', operator: '', operand1: '', operand2: '' }));
+                        else
+                            this.setState(this.setState({ text: result, operator: '', operand1: '', operand2: '' }));
+                    });
             else if (this.state.operator === '÷')
-                this.setState({ text: division(Number(this.state.operand1), Number(this.state.operand2)), operator: '', operand1: '', operand2: '' });
+                fetch(process.env.REACT_APP_BACKEND_URL + 'division?operand1=' + Number(this.state.operand1) + '&operand2=' + Number(this.state.operand2))
+                    .then(resp => resp.json())
+                    .then(result => {
+                        if (isNaN(result))
+                            this.setState(this.setState({ text: 'Error', operator: '', operand1: '', operand2: '' }));
+                        else
+                            this.setState(this.setState({ text: result, operator: '', operand1: '', operand2: '' }));
+                    });
         } else if (type === 'custom') {
             if (value === '⌫') {
                 if (this.state.operand2.length > 0)
@@ -120,16 +148,3 @@ ReactDOM.render(
     <Calculator />,
     document.getElementById('root')
 );
-
-function addition(operand1, operand2) {
-    return operand1 + operand2;
-}
-function subtraction(operand1, operand2) {
-    return operand1 - operand2;
-}
-function multiplication(operand1, operand2) {
-    return operand1 * operand2;
-}
-function division(operand1, operand2) {
-    return operand1 / operand2;
-}
