@@ -1,7 +1,9 @@
+* {
+    box-sizing: border-box;
+}
 body {
-    font-family: Roboto;
-    font-weight: bold;
-    margin: 20px;
+    font-family: 'Roboto', sans-serif;
+    margin: 0px;
 }
 .calculator {
     width: 400px;
@@ -15,7 +17,6 @@ body {
     font-size: 50px;
     line-height: 200px;
     text-align: right;
-    box-sizing: border-box;
     padding: 20px;
 }
 .row:after {
@@ -24,6 +25,7 @@ body {
     display: table;
 }
 .square {
+    font-family: 'Roboto', sans-serif;
     border: 1px solid #b9b9b9;
     float: left;
     font-size: 40px;
