@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import "typeface-roboto";
 import './index.css';
 
-var BACKEND_URL = process.env.REACT_APP_BACKEND_URL === undefined ? 'https://calculator-spring-boot-react.herokuapp.com/' : process.env.REACT_APP_BACKEND_URL;
+var BACKEND_URL = process.env.REACT_APP_BACKEND_URL === undefined ? 'http://localhost:8080/' : process.env.REACT_APP_BACKEND_URL;
 
 function Square(props) {
     return (
